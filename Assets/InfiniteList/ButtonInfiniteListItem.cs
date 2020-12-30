@@ -21,6 +21,9 @@ public class ButtonInfiniteListItem : InfiniteListItem {
         if (toggle != null && toggle.Collector != null) {
             toggle.Collector.SwitchTo(toggle, true);
         }
-        infiniteList?.OnItemSelected?.Invoke(groupIndex, index, id, this);
+
+        if (infiniteList != null) {
+            infiniteList.OnItemSelected?.Invoke(groupIndex, index, this);
+        }
     }
 }

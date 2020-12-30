@@ -82,7 +82,7 @@ public class VerticalInfiniteList : InfiniteList {
         group.Refresh(index);
     }
 
-    public override void MoveToByIndex(int groupIndex, float duration = 0.3f) {
+    public override void MoveTo(int groupIndex, float duration = 0.3f) {
         // scroll如果垂直： 从上到下1 ~ 0
         // scroll如果水平： 从左到右0 ~ 1
         // 和anchor以及layotGroup的设置没有关系

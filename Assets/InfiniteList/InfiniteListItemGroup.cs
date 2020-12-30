@@ -88,7 +88,7 @@ public class InfiniteListItemGroup : MonoBehaviour {
                     int index = startIndex + items.Count - 1;
                     if (infiniteList.IsIndexValid(index)) {
                         clone.gameObject.SetActive(true);
-                        clone.Refresh(groupIndex, index, infiniteList.idList[index]);
+                        clone.Refresh(groupIndex, index);
                     }
                     else {
                         clone.gameObject.SetActive(false);
@@ -103,7 +103,7 @@ public class InfiniteListItemGroup : MonoBehaviour {
                     int index = startIndex + i;
                     if (infiniteList.IsIndexValid(index)) {
                         items[i].gameObject.SetActive(true);
-                        items[i].Refresh(groupIndex, index, infiniteList.idList[index]);
+                        items[i].Refresh(groupIndex, index);
                     }
                     else {
                         items[i].gameObject.SetActive(false);

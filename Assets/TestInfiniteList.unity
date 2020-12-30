@@ -1300,8 +1300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellProto: {fileID: 2050656015}
-  MinScale: {x: 0.8, y: 1}
+  enableWhenScrolling: 0
+  MinScale: {x: 1, y: 1}
   Shrinkage: {x: 0.005, y: 0.005}
+  StopSpeed: 60
   center: {fileID: 1468017553}
   _scrollRect: {fileID: 802075271}
   btnLeft: {fileID: 387440866}
@@ -1451,7 +1453,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupIndex: 0
   index: 0
-  id: 0
   _toggle: {fileID: 0}
 --- !u!1 &1468017552
 GameObject:
@@ -1736,7 +1737,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupIndex: 0
   index: 0
-  id: 0
   _toggle: {fileID: 0}
 --- !u!114 &1884377541
 MonoBehaviour:
@@ -1810,7 +1810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupIndex: 0
   index: 0
-  id: 0
   _toggle: {fileID: 0}
   button: {fileID: 0}
 --- !u!1 &1986419881

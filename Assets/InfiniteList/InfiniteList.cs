@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,58 +9,59 @@ public abstract class InfiniteList : MonoBehaviour {
     public InfiniteListItemGroup groupProto;
     public Transform groupProtoParent;
 
-    public virtual uint LINE { get { return 1; } }
-    [Header("每行/列 x个元素")]
-    public uint countPerLine = 1;
+    public virtual uint LINE {
+        get { return 1; }
+    }
+
+    [Header("每行/列 x个元素")] public uint countPerLine = 1;
 
     #region 组件
-    private CP_TransformToggleCollector _toggleCollector;
-    public CP_TransformToggleCollector toggleCollector {
+
+    private TransformToggleCollector _toggleCollector;
+
+    public TransformToggleCollector toggleCollector {
         get {
             if (_toggleCollector == null) {
-                _toggleCollector = GetComponentInChildren<CP_TransformToggleCollector>();
+                _toggleCollector = GetComponentInChildren<TransformToggleCollector>();
             }
+
             return _toggleCollector;
         }
     }
 
     private ScrollRect _scrollRect;
+
     public ScrollRect scrollRect {
         get {
-            if(_scrollRect == null) {
+            if (_scrollRect == null) {
                 _scrollRect = GetComponentInChildren<ScrollRect>();
             }
+
             return _scrollRect;
         }
     }
+
     #endregion
 
     public Action<InfiniteListItem> OnItemCreated;
 
     // groupIndex:index:id:InfiniteListItem
-    public Action<int, int, uint, InfiniteListItem> OnItemRefreshed;
-    public Action<int, int, uint, InfiniteListItem> OnItemSelected;
+    public Action<int, int, InfiniteListItem> OnItemRefreshed;
+    public Action<int, int, InfiniteListItem> OnItemSelected;
 
     // 当前位置移动到特定位置
     protected MonoTimer timer;
 
-    [Header("调试显示")]
-    public List<InfiniteListItemGroup> groups = new List<InfiniteListItemGroup>();
-    [Header("调试显示")]
-    public IList<uint> idList = new List<uint>();
-    public int IdCount {
-        get {
-            return idList.Count;
-        }
-    }
+    [Header("调试显示")] public List<InfiniteListItemGroup> groups = new List<InfiniteListItemGroup>();
+
+    public int DataCount { get; protected set; }
+
     public int realLineCount {
-        get {
-            return Mathf.CeilToInt(1f * IdCount / (int)countPerLine);
-        }
+        get { return Mathf.CeilToInt(1f * DataCount / (int) countPerLine); }
     }
 
     public bool IsIndexValid(int index) {
-        return 0 <= index && index < IdCount;
+        return 0 <= index && index < DataCount;
     }
 
     protected virtual void Awake() {
@@ -93,10 +93,13 @@ public abstract class InfiniteList : MonoBehaviour {
             gridLayoutGroup.enabled = false;
         }
     }
+
     protected virtual void Start() {
     }
+
     protected virtual void SetFirstAnchoredPosition(RectTransform cloneGroupRect, int groupIndex) {
     }
+
     private InfiniteListItemGroup TryLoadOne() {
         InfiniteListItemGroup clone = GameObject.Instantiate<InfiniteListItemGroup>(groupProto, groupProtoParent);
         // 不能设置Vector3.zero,需要保持原始位置
@@ -119,8 +122,9 @@ public abstract class InfiniteList : MonoBehaviour {
         groups.Add(clone);
         return clone;
     }
+
     private void TryLoad(bool refresh) {
-        int factLineCount = (int)Mathf.Min(LINE, realLineCount);
+        int factLineCount = (int) Mathf.Min(LINE, realLineCount);
         while (factLineCount > groups.Count) {
             var group = TryLoadOne();
             if (refresh) {
@@ -142,29 +146,21 @@ public abstract class InfiniteList : MonoBehaviour {
         }
     }
 
-    public void SetIdList(IList<uint> idList, bool refresh = true) {
-        this.idList.Clear();
-        for (int i = 0, length = idList.Count; i < length; ++i) {
-            this.idList.Add(idList[i]);
-        }
+    public void SetCount(int count, bool refresh = true) {
+        DataCount = count;
         TryLoad(refresh);
         SetContentWH();
     }
+
     protected virtual void SetContentWH() {
     }
 
     protected virtual void OnScrollRectNormalizedPositionChange(Vector2 normalizedPosition) {
     }
+
     public virtual void ResetPosition(float normalizedPosition = 0f) {
     }
 
-    public void MoveToById(uint id, float duration = 0.3f) {
-        int index = idList.IndexOf(id);
-        if (index != -1) {
-            int groupIndex = Mathf.FloorToInt(1f * index / (int)countPerLine);
-            MoveToByIndex(groupIndex);
-        }
-    }
-    public virtual void MoveToByIndex(int groupIndex, float duration = 0.3f) {
+    public virtual void MoveTo(int groupIndex, float duration = 0.3f) {
     }
 }

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CP_TransformToggle : MonoBehaviour {
+public class TransformToggle : MonoBehaviour {
     public List<Transform> actives = new List<Transform>();
     public List<Transform> deactives = new List<Transform>();
 
-    private CP_TransformToggleCollector _collector;
-    public CP_TransformToggleCollector Collector {
+    private TransformToggleCollector _collector;
+    public TransformToggleCollector Collector {
         get {
             if (_collector == null) {
-                _collector = GetComponentInParent<CP_TransformToggleCollector>();
+                _collector = GetComponentInParent<TransformToggleCollector>();
             }
 
             return _collector;

@@ -30,8 +30,9 @@ public class TestInfiniteList : MonoBehaviour {
             return this;
         }
 
-        public void Refresh(uint id) {
-            nameText.text = id.ToString();
+        public void Refresh(int index) {
+            // 根据index获取对应的id以及相关数据
+            nameText.text = index.ToString();
         }
         public void SetSelected() {
             Debug.LogError("SetSelected");
@@ -52,12 +53,12 @@ public class TestInfiniteList : MonoBehaviour {
                     vds.Add(item.gameObject, vd);
                 }
             };
-            vertical.OnItemRefreshed = (groupIndex, index, id, item) => {
+            vertical.OnItemRefreshed = (groupIndex, index, item) => {
                 if (vds.TryGetValue(item.gameObject, out Vd vd)) {
-                    vd.Refresh(id);
+                    vd.Refresh(index);
                 }
             };
-            vertical.OnItemSelected = (groupIndex, index, id, item) => {
+            vertical.OnItemSelected = (groupIndex, index, item) => {
                 if (vds.TryGetValue(item.gameObject, out Vd vd)) {
                     vd.SetSelected();
                 }
@@ -70,12 +71,12 @@ public class TestInfiniteList : MonoBehaviour {
                     vdss.Add(item.gameObject, vd);
                 }
             };
-            horizontal.OnItemRefreshed = (groupIndex, index, id, item) => {
+            horizontal.OnItemRefreshed = (groupIndex, index, item) => {
                 if (vdss.TryGetValue(item.gameObject, out Vd vd)) {
-                    vd.Refresh(id);
+                    vd.Refresh(index);
                 }
             };
-            horizontal.OnItemSelected = (groupIndex, index, id, item) => {
+            horizontal.OnItemSelected = (groupIndex, index, item) => {
                 if (vdss.TryGetValue(item.gameObject, out Vd vd)) {
                     vd.SetSelected();
                 }
@@ -99,8 +100,8 @@ public class TestInfiniteList : MonoBehaviour {
             for (int i = 0; i < 58; ++i) {
                 ls.Add((uint)i);
             }
-            vertical?.SetIdList(ls);
-            horizontal?.SetIdList(ls);
+            vertical?.SetCount(ls.Count);
+            horizontal?.SetCount(ls.Count);
         }
         else if (Input.GetKeyDown(KeyCode.C)) {
             // 测试
@@ -108,8 +109,8 @@ public class TestInfiniteList : MonoBehaviour {
             for (int i = 0; i < 5; ++i) {
                 ls.Add((uint)i);
             }
-            vertical?.SetIdList(ls);
-            horizontal?.SetIdList(ls);
+            vertical?.SetCount(ls.Count);
+            horizontal?.SetCount(ls.Count);
         }
         else if (Input.GetKeyDown(KeyCode.D)) {
             // 测试
@@ -117,21 +118,21 @@ public class TestInfiniteList : MonoBehaviour {
             for (int i = 0; i < 120; ++i) {
                 ls.Add((uint)i);
             }
-            vertical?.SetIdList(ls);
-            horizontal?.SetIdList(ls);
+            vertical?.SetCount(ls.Count);
+            horizontal?.SetCount(ls.Count);
         }
 
         else if (Input.GetKeyDown(KeyCode.E)) {
-            vertical?.MoveToById(5);
-            horizontal?.MoveToById(5);
+            vertical?.MoveTo(5);
+            horizontal?.MoveTo(5);
         }
         else if (Input.GetKeyDown(KeyCode.F)) {
-            vertical?.MoveToById(57);
-            horizontal?.MoveToById(57);
+            vertical?.MoveTo(57);
+            horizontal?.MoveTo(57);
         }
         else if (Input.GetKeyDown(KeyCode.G)) {
-            vertical?.MoveToById(200);
-            horizontal?.MoveToById(200);
+            vertical?.MoveTo(200);
+            horizontal?.MoveTo(200);
         }
     }
 }
