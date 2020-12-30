@@ -2,7 +2,7 @@
 Unity UGUI 高效的无限循环复用列表的实现
 
 <p align="center" >
-<img src="https://github.com/kaclok/Unity-UGUI-InfiniteScrolList/tree/master/Gifs/gif.gif" alt="InfiniteScrolList" title="InfiniteScrolList demo">
+<img src="https://github.com/kaclok/Unity-UGUI-InfiniteScrolList/blob/master/Gifs/gif.gif" alt="InfiniteScrolList" title="InfiniteScrolList demo">
 </p>
 
 参考了：
