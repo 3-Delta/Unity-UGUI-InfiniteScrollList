@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TransformToggle : MonoBehaviour {
+    public bool playOnEnable = false;
     public List<Transform> actives = new List<Transform>();
     public List<Transform> deactives = new List<Transform>();
 
@@ -22,11 +23,19 @@ public class TransformToggle : MonoBehaviour {
         if (Collector != null) {
             _collector.RegisterToggle(this);
         }
+
+        if (playOnEnable) {
+            ShowHideBySetActive(true);
+        }
     }
 
     protected void OnDisable() {
         if (Collector != null) {
             _collector.UnregisterToggle(this);
+        }
+        
+        if (playOnEnable) {
+            ShowHideBySetActive(false);
         }
     }
 
