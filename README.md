@@ -10,7 +10,7 @@ Unity UGUI 高效的无限循环复用列表的实现
 </p>
 
 参考了：
-1. NGUI的 SpingPanelh和CenterOnChild, CenterOnClick
+1. NGUI的 SpingPanelh和CenterOnChild, CenterOnClick, SpringPanel
 2. https://github.com/HengyuanLee/UGUIScrollGrid.git
 3. https://github.com/akbiggs/UnityTimer.git
 4. https://github.com/kaclok/unity-ui-extensions.git
