@@ -17,12 +17,12 @@ public abstract class InfiniteList : MonoBehaviour {
 
     #region 组件
 
-    private TransformToggleCollector _toggleCollector;
+    private ActivateRegistry _toggleCollector;
 
-    public TransformToggleCollector toggleCollector {
+    public ActivateRegistry toggleCollector {
         get {
             if (_toggleCollector == null) {
-                _toggleCollector = GetComponentInChildren<TransformToggleCollector>();
+                _toggleCollector = GetComponentInChildren<ActivateRegistry>();
             }
 
             return _toggleCollector;

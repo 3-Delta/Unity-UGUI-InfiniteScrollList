@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TransformToggle : MonoBehaviour {
-    public bool playOnEnable = false;
+public class Activate : MonoBehaviour {
     public List<Transform> actives = new List<Transform>();
     public List<Transform> deactives = new List<Transform>();
 
-    private TransformToggleCollector _collector;
-    public TransformToggleCollector Collector {
+    [SerializeField] private ActivateRegistry _collector;
+    public ActivateRegistry Collector {
         get {
             if (_collector == null) {
-                _collector = GetComponentInParent<TransformToggleCollector>();
+                _collector = GetComponentInParent<ActivateRegistry>();
             }
 
             return _collector;
@@ -21,21 +20,13 @@ public class TransformToggle : MonoBehaviour {
     
     protected void OnEnable() {
         if (Collector != null) {
-            _collector.RegisterToggle(this);
-        }
-
-        if (playOnEnable) {
-            ShowHideBySetActive(true);
+            Collector.RegisterToggle(this);
         }
     }
 
     protected void OnDisable() {
         if (Collector != null) {
-            _collector.UnregisterToggle(this);
-        }
-        
-        if (playOnEnable) {
-            ShowHideBySetActive(false);
+            Collector.UnregisterToggle(this);
         }
     }
 

@@ -32,9 +32,7 @@ public class HorizontalInfiniteList : InfiniteList {
         float newMaxX = newContentWidth - scrollRect.viewport.rect.width;
         float minX = scrollRect.content.offsetMin.x;
         newMaxX += minX;
-        
-        // 这句没用吧
-        // newMaxX = Mathf.Max(minX, newMaxX);
+
         scrollRect.content.offsetMax = new Vector2(newMaxX, 0);
     }
     public override void ResetPosition(float normalizedPosition = 0f) {

@@ -37,8 +37,6 @@ public class VerticalInfiniteList : InfiniteList {
         // 获得offsetMin.y以（0， offsetMax.y）为基准的offset, 目的是在刷新数据的时候，scrollrect的normalization不改变
         newMinY += maxY;
         
-        // 这句没用吧
-        // newMinY = Mathf.Min(maxY, newMinY);
         scrollRect.content.offsetMin = new Vector2(0, newMinY);
     }
     public override void ResetPosition(float normalizedPosition = 0f) {

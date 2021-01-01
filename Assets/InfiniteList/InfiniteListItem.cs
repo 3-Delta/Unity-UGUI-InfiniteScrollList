@@ -12,11 +12,11 @@ public class InfiniteListItem : MonoBehaviour {
     #region 组件
     [Header("控制高亮")]
     [SerializeField]
-    private TransformToggle _toggle;
-    public TransformToggle toggle {
+    private Activate _toggle;
+    public Activate toggle {
         get {
             if(_toggle == null) {
-                _toggle = GetComponent<TransformToggle>();
+                _toggle = GetComponent<Activate>();
             }
             return _toggle;
         }

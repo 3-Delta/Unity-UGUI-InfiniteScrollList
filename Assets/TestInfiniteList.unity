@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &387440865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1172,9 +1172,9 @@ GameObject:
   - component: {fileID: 802075269}
   - component: {fileID: 802075273}
   - component: {fileID: 802075272}
-  - component: {fileID: 802075271}
   - component: {fileID: 802075270}
   - component: {fileID: 802075274}
+  - component: {fileID: 802075271}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -1229,11 +1229,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 802075268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5122c15e204bd624e90d5b9c19e0b979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 386513120}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -1243,13 +1243,14 @@ MonoBehaviour:
   m_Viewport: {fileID: 230648792}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
-  m_HorizontalScrollbarVisibility: 2
-  m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -3
-  m_VerticalScrollbarSpacing: -3
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  IsDraging: 0
 --- !u!114 &802075272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,15 +1300,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3713607980f974499727fde9995249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellProto: {fileID: 2050656015}
-  enableWhenScrolling: 0
-  MinScale: {x: 1, y: 1}
+  enableWhenScrolling: 1
+  MinScale: {x: 0.8, y: 0.8}
   Shrinkage: {x: 0.005, y: 0.005}
-  StopSpeed: 60
-  center: {fileID: 1468017553}
+  StopSpeed: 200
+  snapTarget: {fileID: 1468017553}
   _scrollRect: {fileID: 802075271}
-  btnLeft: {fileID: 387440866}
-  btnRight: {fileID: 1540119917}
+  currentSpeed: 0
 --- !u!1 &1070289408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,7 +1364,7 @@ MonoBehaviour:
   anchorPosition: {x: 0, y: 0, z: 0}
   vertical: {fileID: 802075270}
   horizontal: {fileID: 1986419883}
-  verticalCenterOn: {fileID: 0}
+  verticalSnapOn: {fileID: 0}
 --- !u!1 &1303735486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1540119916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1750,9 +1749,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5595ba323d781b040a78173c8802d425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnEnable: 0
   actives: []
   deactives:
   - {fileID: 97218315}
+  _collector: {fileID: 0}
 --- !u!114 &1884377542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,8 +1811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupIndex: 0
   index: 0
-  _toggle: {fileID: 0}
-  button: {fileID: 0}
+  _toggle: {fileID: 1884377541}
+  button: {fileID: 1884377542}
 --- !u!1 &1986419881
 GameObject:
   m_ObjectHideFlags: 0

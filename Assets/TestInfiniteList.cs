@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TestInfiniteList : MonoBehaviour {
@@ -13,7 +14,7 @@ public class TestInfiniteList : MonoBehaviour {
     public VerticalInfiniteList vertical;
     public HorizontalInfiniteList horizontal;
 
-    public VerticalCenterOnScrollRect verticalCenterOn;
+    [FormerlySerializedAs("verticalCenterOn")] public VerticalSnapOnChild verticalSnapOn;
 
     // vd是热更层的一个逻辑，这里模拟热更和框架的交互
     public class Vd {

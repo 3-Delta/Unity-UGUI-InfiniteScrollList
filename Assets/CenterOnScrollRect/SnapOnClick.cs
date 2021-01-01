@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // 参考NGUI CenterOnClick的实现
-public class CenterOnClick : MonoBehaviour
+public class SnapOnClick : MonoBehaviour
 {
     [SerializeField] private Button _button;
     public Button button {
@@ -16,13 +17,14 @@ public class CenterOnClick : MonoBehaviour
         }
     }
 
-    [SerializeField] private CenterOnScrollRect _centerOn;
-    public CenterOnScrollRect centerOn {
+    [SerializeField] private SnapOnChild snapOn;
+    public SnapOnChild SnapOn {
         get {
-            if (_centerOn == null) {
-                _centerOn = GetComponentInParent<CenterOnScrollRect>();
+            if (snapOn == null) {
+                snapOn = GetComponentInParent<SnapOnChild>();
             }
-            return _centerOn;
+
+            return snapOn;
         }
     }
 
@@ -37,6 +39,6 @@ public class CenterOnClick : MonoBehaviour
     }
 
     public void SetCenter() {
-        centerOn.CenterOn(transform);
+        SnapOn.TrySnapOn(transform);
     }
 }
