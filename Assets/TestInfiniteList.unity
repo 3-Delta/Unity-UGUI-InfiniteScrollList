@@ -1250,7 +1250,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  IsDraging: 0
 --- !u!114 &802075272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,13 +1299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3713607980f974499727fde9995249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableWhenScrolling: 1
   MinScale: {x: 0.8, y: 0.8}
   Shrinkage: {x: 0.005, y: 0.005}
-  StopSpeed: 200
-  snapTarget: {fileID: 1468017553}
+  stopSpeed: 150
+  center: {fileID: 1468017553}
   _scrollRect: {fileID: 802075271}
-  currentSpeed: 0
 --- !u!1 &1070289408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1362,8 @@ MonoBehaviour:
   vertical: {fileID: 802075270}
   horizontal: {fileID: 1986419883}
   verticalSnapOn: {fileID: 0}
+  target1: {fileID: 0}
+  target2: {fileID: 0}
 --- !u!1 &1303735486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 41.5}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1540119915
@@ -1700,7 +1699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1884377539
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1749,7 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5595ba323d781b040a78173c8802d425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnEnable: 0
   actives: []
   deactives:
   - {fileID: 97218315}
@@ -1954,7 +1952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2050656015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1972,7 +1970,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 115.6, y: -10}
-  m_SizeDelta: {x: 176.51836, y: 52.77916}
+  m_SizeDelta: {x: 176.51836, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2050656016
 MonoBehaviour:

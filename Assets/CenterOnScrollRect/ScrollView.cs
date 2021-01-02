@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ScrollView : ScrollRect

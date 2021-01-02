@@ -14,8 +14,10 @@ public class SpringTo : MonoBehaviour {
             return _toSpring;
         }
     }
-    [Header("目标世界位置")] public Vector3 toWorldPosition;
-    [Header("强度")] public float strength = 10f;
+    [Header("目标世界位置")] 
+    public Vector3 toWorldPosition;
+    [Header("强度")] 
+    public float strength = 10f;
 
     private void LateUpdate() {
         ToPosition();

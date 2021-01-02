@@ -14,7 +14,9 @@ public class TestInfiniteList : MonoBehaviour {
     public VerticalInfiniteList vertical;
     public HorizontalInfiniteList horizontal;
 
-    [FormerlySerializedAs("verticalCenterOn")] public VerticalSnapOnChild verticalSnapOn;
+    public VerticalSnapOnChild verticalSnapOn;
+    public Transform target1;
+    public Transform target2;
 
     // vd是热更层的一个逻辑，这里模拟热更和框架的交互
     public class Vd {
@@ -134,6 +136,12 @@ public class TestInfiniteList : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.G)) {
             vertical?.MoveTo(200);
             horizontal?.MoveTo(200);
+        }
+        else if (Input.GetKeyDown(KeyCode.H)) {
+            verticalSnapOn?.TrySnapOn(target1);
+        }
+        else if (Input.GetKeyDown(KeyCode.I)) {
+            verticalSnapOn?.TrySnapOn(target2);
         }
     }
 }

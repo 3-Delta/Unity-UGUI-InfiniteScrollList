@@ -13,7 +13,8 @@ public abstract class InfiniteList : MonoBehaviour {
         get { return 1; }
     }
 
-    [Header("每行/列 x个元素")] public uint countPerLine = 1;
+    [Header("每行/列 x个元素")] 
+    public uint countPerLine = 1;
 
     #region 组件
 
@@ -52,7 +53,8 @@ public abstract class InfiniteList : MonoBehaviour {
     // 当前位置移动到特定位置
     protected MonoTimer timer;
 
-    [Header("调试显示")] public List<InfiniteListItemGroup> groups = new List<InfiniteListItemGroup>();
+    [Header("调试显示")] 
+    public List<InfiniteListItemGroup> groups = new List<InfiniteListItemGroup>();
 
     public int DataCount { get; protected set; }
 

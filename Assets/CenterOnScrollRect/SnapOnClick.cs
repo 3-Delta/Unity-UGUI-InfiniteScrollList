@@ -35,10 +35,10 @@ public class SnapOnClick : MonoBehaviour
     }
 
     private void OnBtnClicked() {
-        SetCenter();
+        Snap();
     }
 
-    public void SetCenter() {
+    public void Snap() {
         SnapOn.TrySnapOn(transform);
     }
 }

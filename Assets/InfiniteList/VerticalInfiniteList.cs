@@ -26,7 +26,7 @@ public class VerticalInfiniteList : InfiniteList {
         float y = -groupIndex * height - height / 2;
         cloneGroupRect.anchoredPosition = new Vector3(cloneGroupRect.anchoredPosition.x, y);
     }
-    // 只是
+
     protected override void SetContentWH() {
         float newContentHeight = height * realLineCount;
         // 获得offsetMin.y以（0， 0）为基准的offset
