@@ -19,3 +19,6 @@ Unity UGUI 高效的无限循环复用列表的实现
 3. https://github.com/akbiggs/UnityTimer.git
 4. https://github.com/kaclok/unity-ui-extensions.git
 5. https://github.com/kaclok/ugui-super-scrollview-example.git
+6. https://blog.csdn.net/qq_30259857/article/details/80275920
+7. https://github.com/rlafydid/UGUICircularScrollView
+8. https://blog.csdn.net/qq_30259857/article/details/79562652
