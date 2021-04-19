@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Activate : MonoBehaviour {
+    // 需要显示的objs
     public List<Transform> actives = new List<Transform>();
+    // 需要隐藏的objs
     public List<Transform> deactives = new List<Transform>();
 
     [SerializeField] private ActivateRegistry _collector;
