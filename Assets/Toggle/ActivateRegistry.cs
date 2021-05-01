@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+// 模仿UGUI的registry设计
 public class ActivateRegistry : MonoBehaviour {
     private List<Activate> cps = new List<Activate>();
 
