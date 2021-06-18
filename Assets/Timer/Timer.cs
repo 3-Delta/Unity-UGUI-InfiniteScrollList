@@ -7,9 +7,6 @@
 
 using UnityEngine;
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using Object = UnityEngine.Object;
 
 public class MonoTimer {
     public static Func<bool> True => () => true;
@@ -18,18 +15,29 @@ public class MonoTimer {
     public float duration { get; private set; }
     public Func<bool> isLooped { get; set; }
     public bool usesRealTime { get; private set; }
-    public bool isPaused { get { return this.timeElapsedBeforePause.HasValue; } }
-    public bool isCancelled { get { return this.timeElapsedBeforeCancel.HasValue; } }
+
+    public bool isPaused {
+        get { return this.timeElapsedBeforePause.HasValue; }
+    }
+
+    public bool isCancelled {
+        get { return this.timeElapsedBeforeCancel.HasValue; }
+    }
+
     /// <summary>
     /// Whether or not the timer completed running. This is false if the timer was cancelled.
     /// </summary>
     public bool isCompleted { get; private set; }
+
     /// <summary>
     /// Get whether or not the timer has finished running for any reason.
     /// </summary>
-    public bool isDone { get { return this.isCompleted || this.isCancelled || this.isOwnerDestroyed; } }
+    public bool isDone {
+        get { return this.isCompleted || this.isCancelled || this.isOwnerDestroyed; }
+    }
 
     #region Public Static Methods
+
     /// <summary>
     /// Register a new timer that should fire an event after a certain amount of time
     /// has elapsed.
@@ -48,51 +56,79 @@ public class MonoTimer {
     /// by preventing the timer from running and accessessing its parents' components
     /// after the parent has been destroyed.</param>
     /// <returns>A timer object that allows you to examine stats and stop/resume progress.</returns>
-    public static MonoTimer Register(float duration, System.Action onComplete, Func<bool> isLooped, System.Action<float> onUpdate = null, bool useRealTime = false, MonoBehaviour autoDestroyOwner = null) {
+    public static MonoTimer Register(float duration, System.Action onComplete, Func<bool> isLooped,
+        System.Action<float> onUpdate = null, bool useRealTime = false, MonoBehaviour autoDestroyOwner = null) {
         MonoTimer timer = new MonoTimer(duration, onComplete, onUpdate, isLooped, useRealTime, autoDestroyOwner);
         TimerMgr.Register(timer);
         return timer;
     }
-    public static MonoTimer Reuse(ref MonoTimer timer, float duration, System.Action onComplete, Func<bool> isLooped = null, System.Action<float> onUpdate = null, bool useRealTime = false, MonoBehaviour autoDestroyOwner = null) {
+
+    public static MonoTimer Reuse(ref MonoTimer timer, float duration, System.Action onComplete,
+        Func<bool> isLooped = null, System.Action<float> onUpdate = null, bool useRealTime = false,
+        MonoBehaviour autoDestroyOwner = null) {
         timer?.Cancel();
         TimerMgr.UnRegister(timer);
         timer?.Reuse(duration, onComplete, onUpdate, isLooped, useRealTime, autoDestroyOwner);
         TimerMgr.Register(timer);
         return timer;
     }
-    public static MonoTimer CreateOrReuse(ref MonoTimer timer, float duration, System.Action onComplete, Func<bool> isLooped = null, System.Action<float> onUpdate = null, bool useRealTime = false, MonoBehaviour autoDestroyOwner = null) {
+
+    public static MonoTimer CreateOrReuse(ref MonoTimer timer, float duration, System.Action onComplete,
+        Func<bool> isLooped = null, System.Action<float> onUpdate = null, bool useRealTime = false,
+        MonoBehaviour autoDestroyOwner = null) {
         if (timer == null) {
             timer = Register(duration, onComplete, isLooped, onUpdate, useRealTime, autoDestroyOwner);
         }
         else {
             timer = Reuse(ref timer, duration, onComplete, isLooped, onUpdate, useRealTime, autoDestroyOwner);
         }
+
         return timer;
     }
-    public static void Cancel(MonoTimer timer) { timer?.Cancel(); }
-    public static void Pause(MonoTimer timer) { timer?.Pause(); }
-    public static void Resume(MonoTimer timer) { timer?.Resume(); }
+
+    public static void Cancel(MonoTimer timer) {
+        timer?.Cancel();
+    }
+
+    public static void Pause(MonoTimer timer) {
+        timer?.Pause();
+    }
+
+    public static void Resume(MonoTimer timer) {
+        timer?.Resume();
+    }
 
     /// <summary>
     /// Stop a timer that is in-progress or paused. The timer's on completion callback will not be called.
     /// </summary>
     public void Cancel() {
-        if (this.isDone) { return; }
+        if (this.isDone) {
+            return;
+        }
+
         this.timeElapsedBeforeCancel = this.GetTimeElapsed();
         this.timeElapsedBeforePause = null;
     }
+
     /// <summary>
     /// Pause a running timer. A paused timer can be resumed from the same point it was paused.
     /// </summary>
     public void Pause() {
-        if (this.isPaused || this.isDone) { return; }
+        if (this.isPaused || this.isDone) {
+            return;
+        }
+
         this.timeElapsedBeforePause = this.GetTimeElapsed();
     }
+
     /// <summary>
     /// Continue a paused timer. Does nothing if the timer has not been paused.
     /// </summary>
     public void Resume() {
-        if (!this.isPaused || this.isDone) { return; }
+        if (!this.isPaused || this.isDone) {
+            return;
+        }
+
         this.timeElapsedBeforePause = null;
     }
 
@@ -108,7 +144,10 @@ public class MonoTimer {
     /// starting and when it was cancelled/paused.</returns>
     public float GetTimeElapsed() // �Ѿ����ŵ�ʱ�䣬�Դӵ�ǰtimer�������֮��
     {
-        if (this.isCompleted || this.GetCurrentTime() >= this.GetFireTime()) { return this.duration; }
+        if (this.isCompleted || this.GetCurrentTime() >= this.GetFireTime()) {
+            return this.duration;
+        }
+
         return this.timeElapsedBeforeCancel ?? this.timeElapsedBeforePause ?? this.GetCurrentTime() - this.startTime;
     }
 
@@ -118,22 +157,33 @@ public class MonoTimer {
     /// <returns>The number of seconds that remain to be elapsed until the timer is completed. A timer
     /// is only elapsing time if it is not paused, cancelled, or completed. This will be equal to zero
     /// if the timer completed.</returns>
-    public float GetTimeRemaining() { return this.duration - this.GetTimeElapsed(); }
+    public float GetTimeRemaining() {
+        return this.duration - this.GetTimeElapsed();
+    }
+
     /// <summary>
     /// Get how much progress the timer has made from start to finish as a ratio.
     /// </summary>
     /// <returns>A value from 0 to 1 indicating how much of the timer's duration has been elapsed.</returns>
-    public float GetRatioComplete() { return this.GetTimeElapsed() / this.duration; }
+    public float GetRatioComplete() {
+        return this.GetTimeElapsed() / this.duration;
+    }
+
     /// <summary>
     /// Get how much progress the timer has left to make as a ratio.
     /// </summary>
     /// <returns>A value from 0 to 1 indicating how much of the timer's duration remains to be elapsed.</returns>
-    public float GetRatioRemaining() { return this.GetTimeRemaining() / this.duration; }
+    public float GetRatioRemaining() {
+        return this.GetTimeRemaining() / this.duration;
+    }
+
     #endregion
 
     #region Private Properties/Fields
 
-    private bool isOwnerDestroyed { get { return this.hasAutoDestroyOwner && this.autoDestroyOwner == null; } }
+    private bool isOwnerDestroyed {
+        get { return this.hasAutoDestroyOwner && this.autoDestroyOwner == null; }
+    }
 
     private Action onComplete;
     private Action<float> onUpdate;
@@ -156,7 +206,8 @@ public class MonoTimer {
 
     #endregion
 
-    private MonoTimer(float duration, System.Action onComplete, System.Action<float> onUpdate, Func<bool> isLooped, bool usesRealTime, MonoBehaviour autoDestroyOwner) {
+    private MonoTimer(float duration, System.Action onComplete, System.Action<float> onUpdate, Func<bool> isLooped,
+        bool usesRealTime, MonoBehaviour autoDestroyOwner) {
         this.duration = duration;
         this.onComplete = onComplete;
         this.onUpdate = onUpdate;
@@ -170,7 +221,9 @@ public class MonoTimer {
         this.startTime = this.GetCurrentTime();
         this.lastUpdateTime = this.startTime;
     }
-    public MonoTimer Reuse(float duration, System.Action onComplete, System.Action<float> onUpdate = null, Func<bool> isLooped = null, bool usesRealTime = false, MonoBehaviour autoDestroyOwner = null) {
+
+    public MonoTimer Reuse(float duration, System.Action onComplete, System.Action<float> onUpdate = null,
+        Func<bool> isLooped = null, bool usesRealTime = false, MonoBehaviour autoDestroyOwner = null) {
         this.isCompleted = false;
         this.duration = duration;
         this.onComplete = onComplete;
@@ -195,12 +248,23 @@ public class MonoTimer {
         this.duration += timeDiff;
     }
 
-    private float GetCurrentTime() { return this.usesRealTime ? Time.realtimeSinceStartup : Time.time; }
-    private float GetFireTime() { return this.startTime + this.duration; }
-    private float GetTimeDelta() { return this.GetCurrentTime() - this.lastUpdateTime; }
+    private float GetCurrentTime() {
+        return this.usesRealTime ? Time.realtimeSinceStartup : Time.time;
+    }
+
+    private float GetFireTime() {
+        return this.startTime + this.duration;
+    }
+
+    private float GetTimeDelta() {
+        return this.GetCurrentTime() - this.lastUpdateTime;
+    }
 
     public void Update() {
-        if (this.isDone) { return; }
+        if (this.isDone) {
+            return;
+        }
+
         if (this.isPaused) {
             this.startTime += this.GetTimeDelta();
             this.lastUpdateTime = this.GetCurrentTime();

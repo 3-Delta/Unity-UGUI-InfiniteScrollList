@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -37,6 +36,7 @@ public class TestInfiniteList : MonoBehaviour {
             // 根据index获取对应的id以及相关数据
             nameText.text = index.ToString();
         }
+
         public void SetSelected() {
             Debug.LogError("SetSelected");
         }
@@ -67,6 +67,7 @@ public class TestInfiniteList : MonoBehaviour {
                 }
             };
         }
+
         if (horizontal != null) {
             horizontal.OnItemCreated = (item) => {
                 if (!vdss.TryGetValue(item.gameObject, out Vd vd)) {
@@ -86,6 +87,7 @@ public class TestInfiniteList : MonoBehaviour {
             };
         }
     }
+
     private void Update() {
         TimerMgr.OnUpdate();
 
@@ -101,8 +103,9 @@ public class TestInfiniteList : MonoBehaviour {
             // 测试
             List<uint> ls = new List<uint>();
             for (int i = 0; i < 58; ++i) {
-                ls.Add((uint)i);
+                ls.Add((uint) i);
             }
+
             vertical?.SetCount(ls.Count);
             horizontal?.SetCount(ls.Count);
         }
@@ -110,8 +113,9 @@ public class TestInfiniteList : MonoBehaviour {
             // 测试
             List<uint> ls = new List<uint>();
             for (int i = 0; i < 5; ++i) {
-                ls.Add((uint)i);
+                ls.Add((uint) i);
             }
+
             vertical?.SetCount(ls.Count);
             horizontal?.SetCount(ls.Count);
         }
@@ -119,8 +123,9 @@ public class TestInfiniteList : MonoBehaviour {
             // 测试
             List<uint> ls = new List<uint>();
             for (int i = 0; i < 120; ++i) {
-                ls.Add((uint)i);
+                ls.Add((uint) i);
             }
+
             vertical?.SetCount(ls.Count);
             horizontal?.SetCount(ls.Count);
         }

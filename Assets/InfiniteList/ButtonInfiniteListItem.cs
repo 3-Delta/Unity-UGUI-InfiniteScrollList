@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,7 @@ public class ButtonInfiniteListItem : InfiniteListItem {
         if (button == null) {
             button = GetComponent<Button>();
         }
+
         if (button != null) {
             button.onClick.AddListener(OnBtnClicked);
         }

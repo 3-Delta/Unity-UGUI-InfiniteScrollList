@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,37 +9,43 @@ public class InfiniteListItem : MonoBehaviour {
     public int index;
 
     #region 组件
-    [Header("控制高亮")]
-    [SerializeField]
-    private Activate _toggle;
+
+    [Header("控制高亮")] [SerializeField] private Activate _toggle;
+
     public Activate toggle {
         get {
-            if(_toggle == null) {
+            if (_toggle == null) {
                 _toggle = GetComponent<Activate>();
             }
+
             return _toggle;
         }
     }
 
     private InfiniteList _infiniteList;
+
     public InfiniteList infiniteList {
         get {
             if (_infiniteList == null) {
                 _infiniteList = GetComponentInParent<InfiniteList>();
             }
+
             return _infiniteList;
         }
     }
 
     private RectTransform _rectTransform;
+
     public RectTransform rectTransform {
         get {
             if (_rectTransform == null) {
                 _rectTransform = GetComponent<RectTransform>();
             }
+
             return _rectTransform;
         }
     }
+
     #endregion
 
     protected virtual void Awake() {

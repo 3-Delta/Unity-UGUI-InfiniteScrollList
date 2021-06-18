@@ -6,18 +6,19 @@ public class SpringTo : MonoBehaviour {
     public Action onFinished;
 
     [SerializeField] private RectTransform _toSpring;
+
     public RectTransform toSpring {
         get {
             if (_toSpring == null) {
                 _toSpring = transform as RectTransform;
             }
+
             return _toSpring;
         }
     }
-    [Header("目标世界位置")] 
-    public Vector3 toWorldPosition;
-    [Header("强度")] 
-    public float strength = 10f;
+
+    [Header("目标世界位置")] public Vector3 toWorldPosition;
+    [Header("强度")] public float strength = 10f;
 
     private void LateUpdate() {
         ToPosition();

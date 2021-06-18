@@ -2,8 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ScrollView : ScrollRect
-{
+public class ScrollView : ScrollRect {
     public bool IsDraging { get; protected set; } = false;
 
     public Action onBeginDrag;

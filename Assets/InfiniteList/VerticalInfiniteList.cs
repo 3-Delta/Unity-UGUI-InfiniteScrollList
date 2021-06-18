@@ -1,19 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VerticalInfiniteList : InfiniteList {
     public float height {
-        get {
-            return groupProto.rectTransform.rect.height;
-        }
+        get { return groupProto.rectTransform.rect.height; }
     }
+
     public override uint LINE {
-        get {
-            return (uint)Mathf.CeilToInt(scrollRect.viewport.rect.height / height) + 1;
-        }
+        get { return (uint) Mathf.CeilToInt(scrollRect.viewport.rect.height / height) + 1; }
     }
 
     protected override void Awake() {
@@ -22,6 +18,7 @@ public class VerticalInfiniteList : InfiniteList {
         scrollRect.horizontal = false;
         scrollRect.vertical = true;
     }
+
     protected override void SetFirstAnchoredPosition(RectTransform cloneGroupRect, int groupIndex) {
         float y = -groupIndex * height - height / 2;
         cloneGroupRect.anchoredPosition = new Vector3(cloneGroupRect.anchoredPosition.x, y);
@@ -36,12 +33,14 @@ public class VerticalInfiniteList : InfiniteList {
         float maxY = scrollRect.content.offsetMax.y;
         // 获得offsetMin.y以（0， offsetMax.y）为基准的offset, 目的是在刷新数据的时候，scrollrect的normalization不改变
         newMinY += maxY;
-        
+
         scrollRect.content.offsetMin = new Vector2(0, newMinY);
     }
+
     public override void ResetPosition(float normalizedPosition = 0f) {
         scrollRect.verticalNormalizedPosition = normalizedPosition;
     }
+
     protected override void OnScrollRectNormalizedPositionChange(Vector2 normalizedPosition) {
         for (int i = 0, length = groups.Count; i < length; ++i) {
             InfiniteListItemGroup group = groups[i];

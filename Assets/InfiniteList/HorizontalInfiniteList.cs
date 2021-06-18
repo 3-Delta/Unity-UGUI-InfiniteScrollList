@@ -1,19 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HorizontalInfiniteList : InfiniteList {
     public float width {
-        get {
-            return groupProto.rectTransform.rect.width;
-        }
+        get { return groupProto.rectTransform.rect.width; }
     }
+
     public override uint LINE {
-        get {
-            return (uint)Mathf.CeilToInt(scrollRect.viewport.rect.width / width) + 1;
-        }
+        get { return (uint) Mathf.CeilToInt(scrollRect.viewport.rect.width / width) + 1; }
     }
 
     protected override void Awake() {
@@ -22,10 +18,12 @@ public class HorizontalInfiniteList : InfiniteList {
         scrollRect.horizontal = true;
         scrollRect.vertical = false;
     }
+
     protected override void SetFirstAnchoredPosition(RectTransform cloneGroupRect, int groupIndex) {
         float x = groupIndex * width + width / 2;
         cloneGroupRect.anchoredPosition = new Vector3(x, cloneGroupRect.anchoredPosition.y);
     }
+
     protected override void SetContentWH() {
         float newContentWidth = width * realLineCount;
         // 当minX == 0时maxX的位置
@@ -35,9 +33,11 @@ public class HorizontalInfiniteList : InfiniteList {
 
         scrollRect.content.offsetMax = new Vector2(newMaxX, 0);
     }
+
     public override void ResetPosition(float normalizedPosition = 0f) {
         scrollRect.horizontalNormalizedPosition = normalizedPosition;
     }
+
     protected override void OnScrollRectNormalizedPositionChange(Vector2 normalizedPosition) {
         for (int i = 0, length = groups.Count; i < length; ++i) {
             InfiniteListItemGroup group = groups[i];
@@ -65,6 +65,7 @@ public class HorizontalInfiniteList : InfiniteList {
             }
         }
     }
+
     private void GroupRefresh(InfiniteListItemGroup group) {
         RectTransform groupRect = group.rectTransform;
         int index = Mathf.FloorToInt((groupRect.anchoredPosition.x) / width);

@@ -2,12 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HorizontalSnapOnChild : SnapOnChild
-{
+public class HorizontalSnapOnChild : SnapOnChild {
     protected override bool SpeedReadySnapOn {
         get { return Mathf.Abs(scrollRect.velocity.x) <= stopSpeed; }
     }
-    
+
     public override bool CanSnap {
         get {
             bool ret = base.CanSnap;
@@ -18,15 +17,17 @@ public class HorizontalSnapOnChild : SnapOnChild
                 if (minX > 0) {
                     return false;
                 }
+
                 float maxX = rt.offsetMax.x;
                 if (maxX < 0) {
                     return false;
                 }
             }
+
             return ret;
         }
     }
-    
+
     protected override void CtrlScale(out Transform nearest) {
         nearest = null;
         float nearestDistance = float.MaxValue;
@@ -50,7 +51,7 @@ public class HorizontalSnapOnChild : SnapOnChild
             contentChildren[i].transform.localScale = new Vector3(scale.x, scale.y, 1f);
         }
     }
-    
+
     public override void TrySnapOn(Transform target) {
         if (target == null) {
             focus = null;

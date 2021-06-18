@@ -1,61 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 public class InfiniteListItemGroup : MonoBehaviour {
     public InfiniteListItem cellProto;
 
-    [Header("默认为transform")]
-    [SerializeField]
+    [Header("默认为transform")] [SerializeField]
     private Transform _cellProtoParent;
+
     public Transform cellProtoParent {
         get {
-            if(_cellProtoParent == null) {
+            if (_cellProtoParent == null) {
                 _cellProtoParent = transform;
             }
+
             return _cellProtoParent;
         }
     }
 
-    [Header("几帧加载一个")]
-    public uint countXFrame = 1;
+    [Header("几帧加载一个")] public uint countXFrame = 1;
 
     #region 组件
+
     public InfiniteList infiniteList;
 
     private RectTransform _rectTransform;
+
     public RectTransform rectTransform {
         get {
             if (_rectTransform == null) {
                 _rectTransform = GetComponent<RectTransform>();
             }
+
             return _rectTransform;
         }
     }
+
     #endregion
 
-    [Header("调试显示")]
-    public List<InfiniteListItem> items = new List<InfiniteListItem>(1);
+    [Header("调试显示")] public List<InfiniteListItem> items = new List<InfiniteListItem>(1);
     public int groupIndex = 0;
 
-    [System.NonSerialized]
-    public int startFrameIndex;
+    [System.NonSerialized] public int startFrameIndex;
 
     public bool hasLoaded {
-        get {
-            return items.Count >= infiniteList.countPerLine;
-        }
+        get { return items.Count >= infiniteList.countPerLine; }
     }
+
     public int startIndex {
-        get {
-            return groupIndex * (int)infiniteList.countPerLine;
-        }
+        get { return groupIndex * (int) infiniteList.countPerLine; }
     }
+
     public int endIndex {
-        get {
-            return (groupIndex + 1) * (int)infiniteList.countPerLine - 1;
-        }
+        get { return (groupIndex + 1) * (int) infiniteList.countPerLine - 1; }
     }
 
     private bool forceRefresh = false;
@@ -63,6 +60,7 @@ public class InfiniteListItemGroup : MonoBehaviour {
     private void Awake() {
         cellProto.gameObject.SetActive(false);
     }
+
     private InfiniteListItem TryLoadOne() {
         InfiniteListItem clone = GameObject.Instantiate<InfiniteListItem>(cellProto, cellProtoParent);
         // todo: 是否强制设置为0位置
@@ -75,6 +73,7 @@ public class InfiniteListItemGroup : MonoBehaviour {
         items.Add(clone);
         return clone;
     }
+
     private void Update() {
         if (!hasLoaded) {
             if (Time.frameCount - startFrameIndex >= countXFrame) {

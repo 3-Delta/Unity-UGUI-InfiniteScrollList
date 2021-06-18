@@ -4,9 +4,9 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // 参考NGUI CenterOnClick的实现
-public class SnapOnClick : MonoBehaviour
-{
+public class SnapOnClick : MonoBehaviour {
     [SerializeField] private Button _button;
+
     public Button button {
         get {
             if (_button == null) {
@@ -18,6 +18,7 @@ public class SnapOnClick : MonoBehaviour
     }
 
     [SerializeField] private SnapOnChild snapOn;
+
     public SnapOnChild SnapOn {
         get {
             if (snapOn == null) {

@@ -2,27 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnapOnChild : MonoBehaviour
-{
-    public enum ESnapStatus
-    {
+public class SnapOnChild : MonoBehaviour {
+    public enum ESnapStatus {
         None = 0,
         Moving = 1,
     }
 
     public ESnapStatus SnapStatus { get; protected set; } = ESnapStatus.None;
-    
+
     public Vector2 MinScale = new Vector2(0.8f, 0.8f);
     public Vector2 Shrinkage = new Vector2(0.005f, 0.005f);
-    
-    [Header("低于该速度，才会开始centerOn流程")]
-    public float stopSpeed = 150f;
 
-    [Header("居中点")] 
-    public RectTransform center;
+    [Header("低于该速度，才会开始centerOn流程")] public float stopSpeed = 150f;
 
-    [SerializeField] 
-    private ScrollView _scrollRect;
+    [Header("居中点")] public RectTransform center;
+
+    [SerializeField] private ScrollView _scrollRect;
+
     public ScrollView scrollRect {
         get {
             if (_scrollRect == null) {
@@ -41,7 +37,7 @@ public class SnapOnChild : MonoBehaviour
     protected virtual bool SpeedReadySnapOn {
         get { return true; }
     }
-    
+
     // 会在边界情况下出现不居中的情况，目前做法是合理设置center的位置
     public virtual bool CanSnap {
         // 拖拽过程中不snap,snap过程中不snap
@@ -83,12 +79,13 @@ public class SnapOnChild : MonoBehaviour
     protected virtual void CtrlScale(out Transform target) {
         target = null;
     }
-    
-    public virtual void TrySnapOn(Transform target) { }
+
+    public virtual void TrySnapOn(Transform target) {
+    }
 
     private void Update() {
         CtrlScale(out nearest);
-        
+
         if (CanSnap) {
             BeginSnap();
             TrySnapOn(nearest);
@@ -98,8 +95,9 @@ public class SnapOnChild : MonoBehaviour
     private void BeginSnap() {
         SnapStatus = ESnapStatus.Moving;
     }
+
     protected void EndSnap() {
-        SnapStatus = ESnapStatus.None; 
+        SnapStatus = ESnapStatus.None;
         if (springTo != null) {
             springTo.enabled = false;
         }
