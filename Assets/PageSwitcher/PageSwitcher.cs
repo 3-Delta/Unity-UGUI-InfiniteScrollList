@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 左右箭头切换
-public class CP_PageSwitcher : MonoBehaviour {
+public class PageSwitcher : MonoBehaviour {
     public enum ETravelMode {
         Circle, // 循环
         CircleRightOnly, // 右侧循环
@@ -50,7 +50,7 @@ public class CP_PageSwitcher : MonoBehaviour {
     }
 
     // 设置个数
-    public CP_PageSwitcher SetCount(uint count) {
+    public PageSwitcher SetCount(uint count) {
         DataCount = (int) count;
         return this;
     }
