@@ -55,6 +55,10 @@ public class InfiniteListItem : MonoBehaviour {
         this.groupIndex = groupIndex;
         this.index = index;
 
+#if UNITY_EDITOR
+        gameObject.name = string.Format("{0}-{1}", groupIndex, index);
+#endif
+
         infiniteList?.OnItemRefreshed?.Invoke(groupIndex, index, this);
     }
 }

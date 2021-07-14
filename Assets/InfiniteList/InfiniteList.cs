@@ -45,7 +45,7 @@ public abstract class InfiniteList : MonoBehaviour {
 
     public Action<InfiniteListItem> OnItemCreated;
 
-    // groupIndex:index:id:InfiniteListItem
+    // cellIndex:index:id:InfiniteListItem
     public Action<int, int, InfiniteListItem> OnItemRefreshed;
     public Action<int, int, InfiniteListItem> OnItemSelected;
 
@@ -161,6 +161,6 @@ public abstract class InfiniteList : MonoBehaviour {
     public virtual void ResetPosition(float normalizedPosition = 0f) {
     }
 
-    public virtual void MoveTo(int groupIndex, float duration = 0.3f) {
+    public virtual void MoveTo(int cellIndex, float duration = 0.3f) {
     }
 }
