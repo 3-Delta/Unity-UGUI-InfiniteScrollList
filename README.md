@@ -1,4 +1,4 @@
-# UGUI-InfiniteLoopScrollList
+# UGUI-InfiniteScrollList
 Unity UGUI 高效的无限循环复用列表的实现       
         进度:40%
 1. 支持CenterClick, CenterChild, SpringPanel, MoveTo
