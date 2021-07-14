@@ -144,8 +144,8 @@ public class TestInfiniteList : MonoBehaviour {
             vertical?.SetCount(ls.Count);
             horizontal?.SetCount(ls.Count);
 
-            vertical?.MoveTo(57, 0.01f);
-            horizontal?.MoveTo(57, 0.01f);
+            vertical?.MoveTo(57, 1f);
+            horizontal?.MoveTo(57, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.G)) {
             vertical?.MoveTo(200);

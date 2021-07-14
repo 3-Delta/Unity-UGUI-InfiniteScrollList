@@ -80,8 +80,7 @@ public class SnapOnChild : MonoBehaviour {
         target = null;
     }
 
-    public virtual void TrySnapOn(Transform target) {
-    }
+    public virtual void TrySnapOn(Transform target) { }
 
     private void Update() {
         CtrlScale(out nearest);

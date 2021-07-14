@@ -37,7 +37,6 @@ public class MonoTimer {
     }
 
     #region Public Static Methods
-
     /// <summary>
     /// Register a new timer that should fire an event after a certain amount of time
     /// has elapsed.
@@ -176,11 +175,9 @@ public class MonoTimer {
     public float GetRatioRemaining() {
         return this.GetTimeRemaining() / this.duration;
     }
-
     #endregion
 
     #region Private Properties/Fields
-
     private bool isOwnerDestroyed {
         get { return this.hasAutoDestroyOwner && this.autoDestroyOwner == null; }
     }
@@ -203,7 +200,6 @@ public class MonoTimer {
     // after they have been destroyed
     private MonoBehaviour autoDestroyOwner;
     private bool hasAutoDestroyOwner;
-
     #endregion
 
     private MonoTimer(float duration, System.Action onComplete, System.Action<float> onUpdate, Func<bool> isLooped,

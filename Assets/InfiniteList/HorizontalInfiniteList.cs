@@ -8,6 +8,10 @@ public class HorizontalInfiniteList : InfiniteList {
         get { return groupProto.rectTransform.rect.width; }
     }
 
+    public float totalwidth {
+        get { return LINE * width; }
+    }
+
     public override uint LINE {
         get { return (uint) Mathf.CeilToInt(scrollRect.viewport.rect.width / width) + 1; }
     }
@@ -47,7 +51,8 @@ public class HorizontalInfiniteList : InfiniteList {
             float maxRight = (LINE * width) - width / 2;
 
             if (distance < minLeft) {
-                float newX = groupRect.anchoredPosition.x + (LINE) * width;
+                int n = Mathf.CeilToInt((minLeft - distance) / totalwidth);
+                float newX = groupRect.anchoredPosition.x + n * totalwidth;
                 // 保证cell的anchoredPosition只在content的高的范围内活动
                 if (newX < scrollRect.content.rect.width) {
                     // 重复利用cell，重置位置到视野范围内
@@ -57,7 +62,8 @@ public class HorizontalInfiniteList : InfiniteList {
             }
             else if (distance > maxRight) {
                 // 保证cell的anchoredPosition只在content的高的范围内活动
-                float newX = groupRect.anchoredPosition.x - (LINE) * width;
+                int n = Mathf.CeilToInt((distance - maxRight) / totalwidth);
+                float newX = groupRect.anchoredPosition.x - n * totalwidth;
                 if (newX > 0) {
                     groupRect.anchoredPosition = new Vector3(newX, groupRect.anchoredPosition.y);
                     GroupRefresh(group);

@@ -8,6 +8,10 @@ public class VerticalInfiniteList : InfiniteList {
         get { return groupProto.rectTransform.rect.height; }
     }
 
+    public float totalHeight {
+        get { return LINE * height; }
+    }
+
     public override uint LINE {
         get { return (uint) Mathf.CeilToInt(scrollRect.viewport.rect.height / height) + 1; }
     }
@@ -49,11 +53,12 @@ public class VerticalInfiniteList : InfiniteList {
             // scrollrect移动的时候, item的anchoredPosition不会变化,除非layoutgroup或者手动代码修改
             float distance = scrollRect.content.offsetMax.y + groupRect.anchoredPosition.y;
             float maxTop = height / 2;
-            float minBottom = -((LINE) * height) + height / 2;
+            float minBottom = -(totalHeight) + height / 2;
 
             if (distance > maxTop) {
                 // content向上滚动,顶部向下弥补
-                float newY = groupRect.anchoredPosition.y - (LINE) * height;
+                int n = Mathf.CeilToInt((distance - maxTop) / totalHeight);
+                float newY = groupRect.anchoredPosition.y - n * totalHeight;
                 // 保证cell的anchoredPosition只在content的高的范围内活动
                 if (newY > -scrollRect.content.rect.height) {
                     // 重复利用cell，重置位置到视野范围内
@@ -63,7 +68,8 @@ public class VerticalInfiniteList : InfiniteList {
             }
             else if (distance < minBottom) {
                 // content向下滚动,底部向上弥补
-                float newY = groupRect.anchoredPosition.y + (LINE) * height;
+                int n = Mathf.CeilToInt((minBottom - distance) / totalHeight);
+                float newY = groupRect.anchoredPosition.y + n * totalHeight;
                 // 保证cell的anchoredPosition只在content的高的范围内活动
                 if (newY < 0) {
                     groupRect.anchoredPosition = new Vector3(groupRect.anchoredPosition.x, newY);

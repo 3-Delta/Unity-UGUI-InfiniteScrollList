@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellProto: {fileID: 1325744151}
   _cellProtoParent: {fileID: 0}
-  countXFrame: 9
+  countXFrame: 60
   infiniteList: {fileID: 1986419883}
   items: []
   groupIndex: 0
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellProto: {fileID: 1884377540}
   _cellProtoParent: {fileID: 0}
-  countXFrame: 10
+  countXFrame: 60
   infiniteList: {fileID: 802075270}
   items: []
   groupIndex: 0

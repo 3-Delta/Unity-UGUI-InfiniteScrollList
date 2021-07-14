@@ -16,7 +16,6 @@ public abstract class InfiniteList : MonoBehaviour {
     [Header("每行/列 x个元素")] public uint countPerLine = 1;
 
     #region 组件
-
     private ActivateRegistry _toggleCollector;
 
     public ActivateRegistry toggleCollector {
@@ -40,7 +39,6 @@ public abstract class InfiniteList : MonoBehaviour {
             return _scrollRect;
         }
     }
-
     #endregion
 
     public Action<InfiniteListItem> OnItemCreated;
@@ -94,14 +92,12 @@ public abstract class InfiniteList : MonoBehaviour {
         }
     }
 
-    protected virtual void Start() {
-    }
+    protected virtual void Start() { }
 
-    protected virtual void SetFirstAnchoredPosition(RectTransform cloneGroupRect, int groupIndex) {
-    }
+    protected virtual void SetFirstAnchoredPosition(RectTransform cloneGroupRect, int groupIndex) { }
 
     private InfiniteListItemGroup TryLoadOne() {
-        InfiniteListItemGroup clone = GameObject.Instantiate<InfiniteListItemGroup>(groupProto, groupProtoParent);
+        InfiniteListItemGroup clone = Instantiate<InfiniteListItemGroup>(groupProto, groupProtoParent);
         // 不能设置Vector3.zero,需要保持原始位置
         // clone.transform.localPosition = Vector3.zero;
         clone.transform.localEulerAngles = Vector3.zero;
@@ -152,15 +148,11 @@ public abstract class InfiniteList : MonoBehaviour {
         SetContentWH();
     }
 
-    protected virtual void SetContentWH() {
-    }
+    protected virtual void SetContentWH() { }
 
-    protected virtual void OnScrollRectNormalizedPositionChange(Vector2 normalizedPosition) {
-    }
+    protected virtual void OnScrollRectNormalizedPositionChange(Vector2 normalizedPosition) { }
 
-    public virtual void ResetPosition(float normalizedPosition = 0f) {
-    }
+    public virtual void ResetPosition(float normalizedPosition = 0f) { }
 
-    public virtual void MoveTo(int cellIndex, float duration = 0.3f) {
-    }
+    public virtual void MoveTo(int cellIndex, float duration = 0.3f) { }
 }

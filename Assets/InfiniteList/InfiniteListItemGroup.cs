@@ -21,7 +21,6 @@ public class InfiniteListItemGroup : MonoBehaviour {
     [Header("几帧加载一个")] public uint countXFrame = 1;
 
     #region 组件
-
     public InfiniteList infiniteList;
 
     private RectTransform _rectTransform;
@@ -35,7 +34,6 @@ public class InfiniteListItemGroup : MonoBehaviour {
             return _rectTransform;
         }
     }
-
     #endregion
 
     [Header("调试显示")] public List<InfiniteListItem> items = new List<InfiniteListItem>(1);

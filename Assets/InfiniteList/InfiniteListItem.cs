@@ -9,7 +9,6 @@ public class InfiniteListItem : MonoBehaviour {
     public int index;
 
     #region 组件
-
     [Header("控制高亮")] [SerializeField] private Activate _toggle;
 
     public Activate toggle {
@@ -45,11 +44,9 @@ public class InfiniteListItem : MonoBehaviour {
             return _rectTransform;
         }
     }
-
     #endregion
 
-    protected virtual void Awake() {
-    }
+    protected virtual void Awake() { }
 
     public void Refresh(int groupIndex, int index) {
         this.groupIndex = groupIndex;
