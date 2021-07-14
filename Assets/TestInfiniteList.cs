@@ -135,8 +135,17 @@ public class TestInfiniteList : MonoBehaviour {
             horizontal?.MoveTo(5);
         }
         else if (Input.GetKeyDown(KeyCode.F)) {
-            vertical?.MoveTo(57);
-            horizontal?.MoveTo(57);
+            // 测试
+            List<uint> ls = new List<uint>();
+            for (int i = 0; i < 120; ++i) {
+                ls.Add((uint) i);
+            }
+
+            vertical?.SetCount(ls.Count);
+            horizontal?.SetCount(ls.Count);
+
+            vertical?.MoveTo(57, 0.01f);
+            horizontal?.MoveTo(57, 0.01f);
         }
         else if (Input.GetKeyDown(KeyCode.G)) {
             vertical?.MoveTo(200);
