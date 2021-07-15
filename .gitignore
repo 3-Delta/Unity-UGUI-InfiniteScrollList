@@ -34,3 +34,4 @@
 /com.unity.multiplayer-hlapi.Editor.csproj
 /com.unity.multiplayer-hlapi.Runtime.csproj
 /com.unity.multiplayer-weaver.Editor.csproj
+/*.sln
