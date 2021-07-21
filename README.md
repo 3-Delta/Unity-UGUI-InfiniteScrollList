@@ -15,6 +15,9 @@ Unity UGUI 高效的无限循环复用列表的实现
 <img src="https://github.com/kaclok/Unity-UGUI-InfiniteScrolList/blob/master/Gifs/rank.gif" alt="Rank" title="Rank view">
 </p>
 
+实现过程中遇到的问题：
+1. 短时间内快速MoveTo超过Line*(Width/Height)的时候,会出现Content位置正确，但是Content内Group位置不正确,原因就是默认都是按照+- 1 * Line*(Width/Height)处理的，而应该是+= n * Line*(Width/Height)
+
 参考了：
 1. NGUI的 CenterOnChild, CenterOnClick, SpringPanel
 2. https://github.com/HengyuanLee/UGUIScrollGrid.git
