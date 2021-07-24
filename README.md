@@ -30,3 +30,4 @@ Unity UGUI 高效的无限循环复用列表的实现
 9. https://github.com/lilianerhan/UnityTableView
 10. https://github.com/baba-s/ugui-super-scrollview-example
 11. https://github.com/setchi/FancyScrollView
+12. https://github.com/ryanslikesocool/Unity-Card-UI
