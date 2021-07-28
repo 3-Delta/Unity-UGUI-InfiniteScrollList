@@ -8,11 +8,11 @@ Unity UGUI 高效的无限循环复用列表的实现
 4. 建此repo的目的是实现：开心消消乐的排行榜名次动态变化的效果【还未完整实现】
 
 <p align="center" >
-<img src="https://github.com/kaclok/Unity-UGUI-InfiniteScrolList/blob/master/Gifs/gif.gif" alt="InfiniteScrolList" title="InfiniteScrolList view">
+<img src="https://github.com/3-Delta/Unity-UGUI-InfiniteScrollList/blob/master/Gifs/gif.gif" alt="InfiniteScrolList" title="InfiniteScrolList view">
 </p>
 
 <p align="center" >
-<img src="https://github.com/kaclok/Unity-UGUI-InfiniteScrolList/blob/master/Gifs/rank.gif" alt="Rank" title="Rank view">
+<img src="https://github.com/3-Delta/Unity-UGUI-InfiniteScrollList/blob/master/Gifs/rank.gif" alt="Rank" title="Rank view">
 </p>
 
 实现过程中遇到的问题：
