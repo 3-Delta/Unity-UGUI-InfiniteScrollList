@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public class VerticalSnapOnChild : SnapOnChild {
     protected override bool SpeedReadySnapOn {
-        get { return Mathf.Abs(scrollRect.velocity.y) <= stopSpeed; }
+        get {
+            return Mathf.Abs(scrollRect.velocity.y) <= stopSpeed;
+        }
     }
 
     public override bool CanSnap {
