@@ -26,11 +26,11 @@ public class Activate : MonoBehaviour {
         }
     }
 
-    protected void OnDisable() {
+    /*protected void OnDisable() {
         if (Collector != null) {
             Collector.UnregisterToggle(this);
         }
-    }
+    }*/
 
     public void ShowHideBySetActive(bool active) {
         foreach (Transform t in actives) {
