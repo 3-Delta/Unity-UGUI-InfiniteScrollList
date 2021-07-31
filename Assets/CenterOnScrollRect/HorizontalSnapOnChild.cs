@@ -28,7 +28,7 @@ public class HorizontalSnapOnChild : SnapOnChild {
         }
     }
 
-    protected override void CtrlScale(out Transform nearest) {
+    protected override void Ctrl(out Transform nearest) {
         nearest = null;
         float nearestDistance = float.MaxValue;
         for (int i = 0, length = contentChildren.Count; i < length; ++i) {
@@ -68,10 +68,13 @@ public class HorizontalSnapOnChild : SnapOnChild {
             localOffset.z = 0f;
             localOffset.x = 0f;
 
-            springTo = SpringTo.Begin(scrollRect.content, scrollRect.content.transform.position - localOffset, () => {
+            void OnFinished() {
                 EndSnap();
                 onSnaped?.Invoke(focus);
-            });
+            }
+
+            springTo = SpringTo.Begin(scrollRect.content, scrollRect.content.transform.position - localOffset,
+                OnFinished);
         }
     }
 }

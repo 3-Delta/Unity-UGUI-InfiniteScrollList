@@ -52,12 +52,14 @@ public class SnapOnChild : MonoBehaviour {
     protected float[] distance;
 
     private void Awake() {
-        // 开始拖拽的时候，停止snap
-        scrollRect.onBeginDrag += () => {
+        void OnBeginDrag() {
             if (enabled) {
                 EndSnap();
             }
-        };
+        }
+
+        // 开始拖拽的时候，停止snap
+        scrollRect.onBeginDrag += OnBeginDrag;
     }
 
     private void Start() {
@@ -76,14 +78,15 @@ public class SnapOnChild : MonoBehaviour {
         distReposition = new float[length];
     }
 
-    protected virtual void CtrlScale(out Transform target) {
+    protected virtual void Ctrl(out Transform target) {
         target = null;
     }
 
-    public virtual void TrySnapOn(Transform target) { }
+    public virtual void TrySnapOn(Transform target) {
+    }
 
     private void Update() {
-        CtrlScale(out nearest);
+        Ctrl(out nearest);
 
         if (CanSnap) {
             BeginSnap();

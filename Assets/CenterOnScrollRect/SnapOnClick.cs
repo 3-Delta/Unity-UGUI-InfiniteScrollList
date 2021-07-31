@@ -40,6 +40,9 @@ public class SnapOnClick : MonoBehaviour {
     }
 
     public void Snap() {
-        SnapOn.TrySnapOn(transform);
+        var snap = SnapOn;
+        if (snap != null) {
+            snap.TrySnapOn(transform);
+        }
     }
 }
