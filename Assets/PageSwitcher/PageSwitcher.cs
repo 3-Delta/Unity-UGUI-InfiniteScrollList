@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 左右箭头切换
+[DisallowMultipleComponent]
 public class PageSwitcher : MonoBehaviour {
     public enum ETravelMode {
         Circle, // 循环
