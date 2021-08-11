@@ -64,5 +64,6 @@ public class ReuseableList<T> : IReuseable where T : IReuseable, new() {
         }
 
         this.list.Clear();
+        this.RealCount = 0;
     }
 }
