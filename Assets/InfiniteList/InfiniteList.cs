@@ -43,7 +43,7 @@ public abstract class InfiniteList : MonoBehaviour {
 
     public Action<InfiniteListItem> OnItemCreated;
 
-    // cellIndex:index:id:InfiniteListItem
+    // cellIndex:index:InfiniteListItem
     public Action<int, int, InfiniteListItem> OnItemRefreshed;
     public Action<int, int, InfiniteListItem> OnItemSelected;
 
