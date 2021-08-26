@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class InfiniteListItem : MonoBehaviour {
     public int groupIndex;
     public int index;
+    // 外部传入数据， onItemCreate的时候设置
+    public System.Object data;
 
     #region 组件
     [Header("控制高亮")] [SerializeField] private Activate _toggle;
