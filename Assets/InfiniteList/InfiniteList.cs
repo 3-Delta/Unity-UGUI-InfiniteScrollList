@@ -93,6 +93,10 @@ public abstract class InfiniteList : MonoBehaviour {
     }
 
     protected virtual void Start() { }
+    
+    private void OnDisable() {
+        timer?.Cancel();
+    }
 
     protected virtual void SetFirstAnchoredPosition(RectTransform cloneGroupRect, int groupIndex) { }
 
